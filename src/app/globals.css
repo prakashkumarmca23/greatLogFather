@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-main: #FAFAF7;
+  --bg-sidebar: #A8D8A8;
+  --yellow-card: #F5C518;
+  --color-pink: #F9A8D4;
+  --color-blue: #93C5FD;
+  --color-green: #86EFAC;
+  --color-red: #FCA5A5;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  
+  --border-thick: 3px solid #000;
+  --border-thin: 2px solid #000;
+  
+  --shadow-hard: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-hard-sm: 2px 2px 0px 0px rgba(0,0,0,1);
+  
+  --radius-sm: 0px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg-sidebar);
+  color: var(--color-black);
+  -webkit-font-smoothing: antialiased;
+  padding: 0.5rem 1rem;
+}
+
+/* Base styles to mimic the "JEDI" chunky flat design */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+button {
+  font-family: 'Space Grotesk', sans-serif;
+  cursor: pointer;
+  border: var(--border-thin);
+  background: var(--color-white);
+  color: var(--color-black);
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-hard-sm);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+}
+
+button.btn-primary {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+button.btn-danger {
+  background: var(--color-red);
+}
+
+input[type="time"], select {
+  font-family: 'Space Grotesk', sans-serif;
+  border: var(--border-thin);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  background: var(--color-white);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+input[type="time"]:focus, select:focus {
+  outline: none;
+  border-color: var(--color-black);
+}
+
+/* Layout Utilities */
+.app-container {
+  display: flex;
+  min-height: calc(100vh - 1rem);
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: transparent;
+  padding: 1rem 2rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.sidebar-logo span.icon {
+  background: var(--color-white);
+  border: var(--border-thin);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar-nav-item {
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-nav-item:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.sidebar-nav-item.active {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 3rem;
+  background: var(--bg-main);
+  overflow-y: auto;
+  border: var(--border-thick);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-hard);
+}
+
+.page-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  text-transform: capitalize;
+}
+
+/* Cards */
+.card {
+  border: var(--border-thick);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  box-shadow: var(--shadow-hard);
+  background: var(--color-white);
+}
+
+.card.yellow {
+  background: var(--yellow-card);
+}
+
+.card.pink { background: var(--color-pink); }
+.card.blue { background: var(--color-blue); }
+.card.green { background: var(--color-green); }
+.card.red { background: var(--color-red); }
+
+/* specific components */
+.tracker-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.time-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: end;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.card-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Target Panel */
+.target-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.target-val {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 1rem 0;
+}
+
+/* Progress */
+.progress-section {
+  margin-bottom: 1.5rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.progress-title {
+  font-size: 1.4rem;
+}
+
+.progress-track {
+  height: 32px;
+  border: var(--border-thick);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  box-shadow: var(--shadow-hard);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stat-card-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.stat-card-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.stat-card-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.time-block-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .time-block-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--color-black);
+    margin-bottom: 1rem;
+  }
+  
+  .time-block-row:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-aware-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch !important;
+  }
+  
+  .mobile-aware-header div {
+    justify-content: space-between;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .app-container {
+    flex-direction: column;
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 0 0 2rem 0;
+    border-bottom: var(--border-thick);
+    margin-bottom: 2rem;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sidebar-nav-item {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .main-content {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .tracker-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .progress-title {
+    font-size: 1.4rem;
+  }
+
+  .stat-card-value {
+    font-size: 1.8rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .progress-track {
+    height: 30px;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .card-actions button {
+    width: 100%;
+    height: 48px; /* Bigger touch target */
+  }
+}
+
+/* Adjustments for the Time Input Grid inside page.tsx */
+@media (max-width: 600px) {
+  /* We'll handle the grid in page.tsx as well for direct style overrides */
+}
+
