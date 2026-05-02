@@ -98,6 +98,7 @@ input[type="time"]:focus, select:focus {
   padding: 1rem 2rem 1rem 0;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease;
 }
 
 .sidebar-logo {
@@ -152,10 +153,11 @@ input[type="time"]:focus, select:focus {
   border: var(--border-thick);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-hard);
+  min-width: 0; /* Prevent overflow issues */
 }
 
 .page-title {
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   margin-bottom: 1.2rem;
   text-transform: capitalize;
 }
@@ -305,12 +307,6 @@ input[type="time"]:focus, select:focus {
     border-bottom: none;
   }
 
-  .mobile-aware-header {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch !important;
-  }
-  
   .mobile-aware-header div {
     justify-content: space-between;
   }
@@ -319,61 +315,55 @@ input[type="time"]:focus, select:focus {
 /* Responsive Design */
 @media (max-width: 1024px) {
   .app-container {
-    flex-direction: column;
-    padding: 1rem;
+    padding: 0.5rem;
     min-height: auto;
   }
 
   .sidebar {
-    width: 100%;
-    padding: 0 0 2rem 0;
-    border-bottom: var(--border-thick);
-    margin-bottom: 2rem;
-  }
-
-  .sidebar-logo {
-    margin-bottom: 1rem;
-  }
-
-  .sidebar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .sidebar-nav-item {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
+    display: none; /* Hide sidebar completely on mobile/tablet */
   }
 
   .main-content {
-    padding: 0;
-    border: none;
-    box-shadow: none;
+    padding: 1.5rem 1rem;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-hard);
+    width: 100%;
   }
 
   .tracker-layout {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 
 @media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+  }
+
   .page-title {
     font-size: 1.8rem;
     text-align: center;
+    margin-bottom: 1.5rem;
   }
 
-  .progress-title {
-    font-size: 1.4rem;
+  .progress-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .progress-header > div:last-child {
+    align-self: flex-end;
   }
 
   .stat-card-value {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .stats-grid {
@@ -381,11 +371,7 @@ input[type="time"]:focus, select:focus {
   }
 
   .card {
-    padding: 1rem;
-  }
-
-  .progress-track {
-    height: 30px;
+    padding: 1.25rem 1rem;
   }
 
   .card-actions {
@@ -395,12 +381,62 @@ input[type="time"]:focus, select:focus {
 
   .card-actions button {
     width: 100%;
-    height: 48px; /* Bigger touch target */
+    height: 52px; /* Touch friendly */
+  }
+
+  .mobile-aware-header {
+    margin-bottom: 1.5rem !important;
+    gap: 0.5rem;
+  }
+
+  .mobile-logo {
+    display: block !important;
+  }
+
+  .current-time-display {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.9rem !important;
   }
 }
 
-/* Adjustments for the Time Input Grid inside page.tsx */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .stat-card-value {
+    font-size: 1.4rem;
+  }
+}
+
+.clock-picker-container {
+  position: absolute;
+  z-index: 100;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+}
+
 @media (max-width: 600px) {
-  /* We'll handle the grid in page.tsx as well for direct style overrides */
+  .clock-picker-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0;
+  }
+
+  .clock-btn {
+    min-width: 44px !important;
+  }
+
+  .greeting-box {
+    height: auto !important;
+    min-height: 80px;
+  }
 }
 

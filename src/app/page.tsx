@@ -355,8 +355,12 @@ export default function TrackerPage() {
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         </button>
 
+        <div className="mobile-logo" style={{ fontWeight: 700, fontSize: '1.1rem', display: 'none' }}>
+           Great Log Father
+        </div>
+
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <div style={{ border: 'var(--border-thin)', padding: '0.4rem 1rem', background: 'transparent', fontWeight: 600, fontSize: '1.1rem', color: 'var(--color-black)' }}>
+          <div className="current-time-display" style={{ border: 'var(--border-thin)', padding: '0.4rem 1rem', background: 'transparent', fontWeight: 600, fontSize: '1.1rem', color: 'var(--color-black)' }}>
             {currentTimeString}
           </div>
 
@@ -452,7 +456,7 @@ export default function TrackerPage() {
         <div className="card target-panel" style={{ alignItems: 'stretch', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '1.5rem', justifyContent: 'flex-start' }}>
 
           {/* Greeting Box */}
-          <div style={{
+          <div className="greeting-box" style={{
             padding: '1rem',
             background: 'var(--bg-main)',
             border: 'var(--border-thin)',

@@ -120,6 +120,7 @@ export function TimeClockInput({ value, onChange, format, defaultTime = '12:00',
         />
         <button
           type="button"
+          className="clock-btn"
           onClick={() => { if (soundEnabled) playSound('click'); setShowClock(!showClock); }}
           style={{ background: 'var(--color-black)', color: 'var(--color-white)', border: 'var(--border-thin)', borderRadius: 0, padding: '0 0.5rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 0, boxSizing: 'border-box', boxShadow: 'none' }}
           title="Open Clock Picker"
@@ -133,10 +134,11 @@ export function TimeClockInput({ value, onChange, format, defaultTime = '12:00',
       {showClock && (
         <>
           <div
-            style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 99 }}
+            className="clock-picker-overlay"
+            style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 99, background: 'rgba(0,0,0,0.1)' }}
             onClick={() => setShowClock(false)}
           />
-          <div style={{ position: 'absolute', zIndex: 100, top: '100%', right: 0, marginTop: '4px' }}>
+          <div className="clock-picker-container">
             <BrutalistClockPicker
               time={clockTime}
               format={format}
